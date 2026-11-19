@@ -1683,7 +1683,6 @@
           <button id="menu-play-btn" class="btn btn-green" style="font-size: 22px; padding: 12px 36px;">▶️ Play Mission</button>
           <button id="menu-notebook-btn" class="btn btn-blue">📖 Chef's Notebook</button>
           <button id="menu-credits-btn" class="btn btn-gold">📜 Credits & Info</button>
-          <button id="menu-download-btn" class="btn btn-sm btn-gold" title="Download standalone 1-file HTML">💾 Download HTML</button>
         </div>
       </div>
     </main>
@@ -2162,8 +2161,9 @@
         <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-bottom: 24px;">
           <div class="panel-parchment" style="padding: 16px;">
             <h4 style="font-family: var(--font-title); font-size: 18px; color: var(--royal-wine); margin-bottom: 8px;">👩‍🏫 Guru Pengembang</h4>
-            <p><strong>Nama:</strong> <span id="credit-teacher-name">Ramlan, S.Pd.</span></p>
-            <p><strong>Sasaran:</strong> SMK Kelas XI (Bahasa Inggris A2)</p>
+            <p><strong>Nama:</strong> <span id="credit-teacher-name">Nurevy Yasir, S.Pd.</span></p>
+            <p><strong>Instansi:</strong> <span id="credit-teacher-school">SMKN 4 Palopo</span></p>
+            <p><strong>Sasaran:</strong> <span id="credit-teacher-target">Kelas XI</span></p>
             <p><strong>Materi:</strong> Procedure Text (Goal, Materials, Steps, Verbs, Connectors)</p>
           </div>
 
@@ -2184,7 +2184,6 @@
 
         <div style="display: flex; justify-content: center; gap: 14px;">
           <button id="credits-back-menu-btn" class="btn btn-green">⬅️ Back to Main Menu</button>
-          <button id="credits-download-btn" class="btn btn-gold">💾 Download Offline HTML</button>
         </div>
       </div>
     </section>
@@ -2390,9 +2389,9 @@
       },
       TEACHER_FORM_URL: "https://forms.google.com",
       TEACHER_INFO: {
-        name: "Ramlan, S.Pd.",
-        school: "SMK Negeri - Mata Pelajaran Bahasa Inggris",
-        classTarget: "Kelas XI SMK (Procedure Text - Kurikulum Merdeka)",
+        name: "Nurevy Yasir, S.Pd.",
+        school: "SMKN 4 Palopo",
+        classTarget: "Kelas XI",
         version: "1.0.0 (Release 2026)"
       }
     };
@@ -3791,29 +3790,15 @@
     }
 
     /* =========================================================
-       N. SCENE 7: CREDITS & DOWNLOAD OFFLINE INITIALIZATION
+       N. SCENE 7: CREDITS INITIALIZATION
        ========================================================= */
     function initCreditsScene() {
       document.getElementById('credit-teacher-name').textContent = CONFIG.TEACHER_INFO.name;
+      document.getElementById('credit-teacher-school').textContent = CONFIG.TEACHER_INFO.school;
+      document.getElementById('credit-teacher-target').textContent = CONFIG.TEACHER_INFO.classTarget;
       document.getElementById('credits-back-menu-btn').onclick = () => {
         SceneManager.changeScene('menu');
       };
-      document.getElementById('credits-download-btn').onclick = downloadSingleHTMLFile;
-    }
-
-    function downloadSingleHTMLFile() {
-      AudioEngine.playClick();
-      const currentHTML = "<!DOCTYPE html>\n" + document.documentElement.outerHTML;
-      const blob = new Blob([currentHTML], { type: "text/html;charset=utf-8" });
-      const url = URL.createObjectURL(blob);
-      const a = document.createElement("a");
-      a.href = url;
-      a.download = "chefs_quest_the_royal_banquet.html";
-      document.body.appendChild(a);
-      a.click();
-      document.body.removeChild(a);
-      URL.revokeObjectURL(url);
-      showToast("📥 File 'chefs_quest_the_royal_banquet.html' downloaded!");
     }
 
     /* =========================================================
@@ -3875,7 +3860,6 @@
 
       document.getElementById('menu-notebook-btn').onclick = openNotebook;
       document.getElementById('menu-credits-btn').onclick = () => SceneManager.changeScene('credits');
-      document.getElementById('menu-download-btn').onclick = downloadSingleHTMLFile;
 
       initNotebookOverlay();
       initMenuScene();
