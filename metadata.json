@@ -1,0 +1,6 @@
+{
+  "name": "Chef's Quest: The Royal Banquet",
+  "description": "An interactive 2D educational culinary time-adventure teaching procedure text, action verbs, sequence connectors, and vocabulary for English learners.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
